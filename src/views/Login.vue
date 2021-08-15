@@ -50,9 +50,7 @@ import Vue from 'vue'
 export default class Home extends Vue {
     
     @Getter getAuthUsu!: authUsuario;
-
     @Mutation addAuthUsu:any;
-
     @Action addAuthUserAsync:any;
 
    //DATA
@@ -70,12 +68,10 @@ export default class Home extends Vue {
 
   
       
-      async validate () {
-         this.addAuthUsu({email:this.email,password:this.password});
-        // await this.setAuthUsuario({email:this.email,password:this.password})
-        await this.addAuthUserAsync();          
-       
-      }
+    async validate () {
+      this.addAuthUsu({email:this.email,password:this.password});
+      await this.addAuthUserAsync();          
+    }
     // }
 }
 

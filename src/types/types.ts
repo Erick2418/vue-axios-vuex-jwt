@@ -14,7 +14,7 @@ export interface User{
     fecha: string, 
     correo: string,
     telefono: string,
-    sueldo: number, 
+    sueldo: string, 
 }
 export interface authUsuario{
     email: string,

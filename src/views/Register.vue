@@ -49,17 +49,6 @@
             label="Aceptar Terminos y Condiciones"
             required
             ></v-checkbox>
-
-            <!-- <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-4"
-            @click="validate"
-            >
-            Validate
-            </v-btn> -->
-            
-           
            
             <v-btn
             color="warning"
@@ -75,62 +64,77 @@
 
 
 <script lang="ts">
+import { User } from '@/types/types'
+import Swal from 'sweetalert2';
 import Vue from 'vue'
-export default {
-    data: () => ({
-      valid: false,
-      firstname: '',
-      firstnameRules: [
+  import { Component } from 'vue-property-decorator'
+  import {State, Getter,Mutation,Action } from 'vuex-class'
+@Component
+export default class Register extends Vue {
+
+ @Action RegisterUser:any;
+
+
+    // data: () => ({
+      valid= false
+      firstname= ''
+      firstnameRules= [
         (v:string) => !!v || 'Name is required',//esto es para que no sea undefine
         (v:string)  => (v && v.length <= 15) || 'Name must be less than 15 characters',
         (v:string) =>  /[A-Za-z ]+/.test(v) ||  'Not number'
-        // [A-Za-z ]+
-      ],
-      correo: '',
-      correoRules: [
+      ]
+      correo= ''
+      correoRules= [
         (v:string)  => !!v || 'E-mail is required',
        (v:string)  => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      sueldo: '',
-      sueldoRules: [
+      ]
+      sueldo= ''
+      sueldoRules=[
         (v:string)  => !!v || 'Sueldo is required',
         (v:string)  => /[0-9]+/.test(v) || 'Sueldo must be valid',
-      ],
-      telefono: '',
-      telefonoRules: [
+      ]
+      telefono= ''
+      telefonoRules= [
         (v:string)  => !!v || 'Telefono is required',
         (v:string)  => /09+[0123456789]{1,9}/.test(v) || 'Telefono must be valid',
-      ],
-      select: null,
-      checkbox: false,
-    }),
-    // mounted(){
-    //   this.getUser();
+      ]
+      select= null
+      checkbox= false
+    // }),
+    // // mounted(){
+    // //   this.getUser();
+    // // },
+    // created(){
+    //   //  this.postUserApi();
     // },
-    created(){
-      //  this.postUserApi();
-    },
-    // computed:{
+    // // computed:{
    
-    //   ...mapState('usuario',['fecha_state']),
+    // //   ...mapState('usuario',['fecha_state']),
+    // // },
+    // methods: {
+    // //    ...mapActions('usuario',['setPersona']),
+    // //    ...mapMutations('usuario',['establecerFecha']),
+    // //   ...mapActions('usuario',['postUserApi']),
+     
+     
+     
+      async submit () {
+
+        const user:User={
+          firstname: this.firstname,
+          fecha: '12/12/12', 
+          correo: this.correo,
+          telefono: this.telefono,
+          sueldo: this.sueldo, 
+        }
+        await this.RegisterUser(user);
+        // this.postUserApi();
+      }
     // },
-    methods: {
-    //    ...mapActions('usuario',['setPersona']),
-    //    ...mapMutations('usuario',['establecerFecha']),
-    //   ...mapActions('usuario',['postUserApi']),
-     
-     
-     
-      submit () {
-        //   const usuarioNew=(this.firstname,this.correo,this.fecha_state,this.sueldo,this.telefono);
-        //   console.log( usuarioNew);
-          // this.postUserApi();
-      },
-    },
-     components: {
-    //   InputDate,
-    //   ...mapState('usuario',['personas']),
-    },
+    //  components: {
+    // //   InputDate,
+    // //   ...mapState('usuario',['personas']),
+    // },
     
 }
 </script>
