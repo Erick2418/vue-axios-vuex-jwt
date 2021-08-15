@@ -45,7 +45,8 @@
         <v-btn
           color="error"
           elevation="2"
-          
+          @click="logout"
+          to="/login"
         >Logout</v-btn>
       </v-row>
     </v-app-bar>
@@ -57,17 +58,26 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
+import router from '@/router';
  export default {
     data: () => ({ 
       drawer: null,
        items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard' ,to:'/' },
-          { title: 'Photos', icon: 'mdi-image' ,to:'/login' },
-          { title: 'About', icon: 'mdi-help-box',to:'/'  },
+          { title: 'Login', icon: 'mdi-image' ,to:'/login' },
+          { title: 'Register', icon: 'mdi-help-box',to:'/register'  },
         ],
         right: null,
     }),
-  
+   methods:{
+      logout(){
+         axios.defaults.headers.common['x-token'] ="";
+         localStorage.removeItem('x-token');
+         location.reload();
+         
+      }
+    }
     
   }
 </script>

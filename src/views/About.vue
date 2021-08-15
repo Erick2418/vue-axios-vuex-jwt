@@ -58,7 +58,7 @@
         search= ''
         usuario_modelo= [{ id: 1,name: 'Mishell', email: 'Mishell@gmail.com', sueldo: '1500' } ]
         headers= [
-          { text: 'id', align: 'start', sortable: false, value: 'id' },
+          // { text: 'id', align: 'start', sortable: false, value: 'id' },
           { text: 'firstname', align: 'start', sortable: false, value: 'firstname' },
           { text: 'fecha',align: 'start', sortable: false, value: 'fecha' },
           { text: 'correo',align: 'start', sortable: false, value: 'correo' },
