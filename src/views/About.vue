@@ -1,4 +1,6 @@
 <template>
+<div>
+
   <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -31,12 +33,17 @@
       </tbody>
     </template>
   </v-simple-table>
+</div>
+
+
+  
 </template>
 
 
 <script lang="ts">
 
-  import Vue from 'vue'
+  import router from '@/router';
+import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
   import {State, Getter,Mutation,Action } from 'vuex-class'
   import {User} from './../types/types'
@@ -56,7 +63,7 @@
 
     @Action deleteUsersAsync:any;
 
-
+    
 
 
     async created() {
@@ -66,25 +73,26 @@
     }
         items:any=[]// lo agrego desde el mounted, con el metodo setusertable
         
+
       async borrar(id:string){
          await this.deleteUsersAsync(id);
 
            await this.addUsersAsync(); //traigo a los usuarios de axios
           this.handleUsersItems(); // monto los items en la tabla
        }
+
+
+
+
       formEditar(user:any){
         console.log(user);
+         router.push('/edit/'+user);
       } 
 
-    mounted(){
-     
-     
-    }
-      editItem (item:string) {
-        // this.editedIndex = this.desserts.indexOf(item)
-        // this.editedItem = Object.assign({}, item)
-        // this.dialog = true
-      }
+   
+   
+      
+      
     handleUsersItems(){
       this.items=this.getUsers;
     }

@@ -1,6 +1,7 @@
 // State
 export interface UsersState{
-    users:User[]
+    users:User[],
+    user: User
 }
 export interface AuthState{
     authUsu: authUsuario,
